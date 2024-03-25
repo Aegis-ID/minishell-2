@@ -41,7 +41,7 @@ int minishell(char **env)
     list command = new_list();
 
     while (1) {
-        oh_my_wish(parsed_env);
+        oh_my_wish(parsed_env, status);
         exit_status = getline(&input, &size, stdin);
         if (exit_status == -1 || my_strcmp(input, "exit\n") == 0)
             my_exit(input, parsed_env, command, status);

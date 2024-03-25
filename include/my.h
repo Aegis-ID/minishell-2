@@ -11,7 +11,7 @@
     #include <stdlib.h>
 
 /*shell prompt*/
-void oh_my_wish(list parsed_env);
+void oh_my_wish(list parsed_env, int status);
 /*handle_input*/
 int handle_input(char *input, char **parsed_input,
     list parsed_env, list command);

@@ -29,9 +29,10 @@ static void print_dir(void)
     free(pwd);
 }
 
-void oh_my_wish(list parsed_env)
+void oh_my_wish(list parsed_env, int status)
 {
     char *user = get_list_path(parsed_env, "USER");
+    int red = 31;
     int blue = 34;
     int cyan = 36;
     int check = 0;
@@ -40,6 +41,8 @@ void oh_my_wish(list parsed_env)
         user = my_strdup("user");
         check = 1;
     }
+    if (status != 0)
+        mini_printf("\033[1;%dmStatus: %d \033[0m", red, status);
     mini_printf("\033[1;%dm%s\033[0m", cyan, user);
     mini_printf("@");
     mini_printf("\033[1;%dmminishell-1 \033[0m", blue);

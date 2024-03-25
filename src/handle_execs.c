@@ -25,7 +25,7 @@ static void check_errors(char **parsed_input, pid_t pid, int *status)
         waitpid(pid, status, 0);
     if (*status == 139 || *status == 11)
         mini_dprintf(2, "Segmentation fault\n");
-    if (*status == -1) {
+    if (*status == -1 || *status == 256) {
         mini_dprintf(2, "%s: Command not found.\n", parsed_input[0]);
         *status = 1;
     }
@@ -35,7 +35,6 @@ int exec_env_bin(char **parsed_input, list parsed_env)
 {
     int status = 0;
     pid_t pid = fork();
-    struct sigaction sa;
 
     if (pid == 0) {
         if (my_strncmp(parsed_input[0], "./", 2) == 0 &&
