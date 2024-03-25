@@ -13,7 +13,8 @@ list env_to_lists(char **env)
     list parsed_env = new_list();
 
     for (int y = 0; env[y] != 0; y++)
-        parsed_env = insert_env(parsed_env, env[y]);
+        if (my_strncmp(env[y], "OLDPWD", 6) != 0)
+            parsed_env = insert_env(parsed_env, env[y]);
     return parsed_env;
 }
 
