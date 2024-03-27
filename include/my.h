@@ -53,5 +53,9 @@ int exec_binary(char **parsed_input, list parsed_env);
 int exec_pipe(char **parsed_input, list parsed_env);
 /*exec_pipe*/
 int check_pipe(char **parsed_input);
-
+/*exec_semicolon*/
+int exec_semicolon(char **parsed_input, list parsed_env);
+/*functions*/
+int is_in_str(char *str, char c);
+int is_in_array(char **array, char c);
 #endif

@@ -17,6 +17,7 @@ SRC		=	src/main.c							\
 			src/execs/exec_builtins.c			\
 			src/execs/exec_bin.c 				\
 			src/execs/exec_pipe.c 				\
+			src/execs/exec_semicolon.c 			\
 			src/builtins/my_env.c 				\
 			src/builtins/my_setenv.c 			\
 			src/builtins/my_unsetenv.c 			\

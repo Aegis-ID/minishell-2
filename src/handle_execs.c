@@ -40,8 +40,10 @@ int exec_env_bin(char **parsed_input, list parsed_env)
         if (my_strncmp(parsed_input[0], "./", 2) == 0 &&
             my_strlen(parsed_input[0]) > 2)
             status = exec_pwd_bin(parsed_input, parsed_env);
-        if (check_pipe(parsed_input))
-            status = exec_pipe(parsed_input, parsed_env);
+        /* if (check_pipe(parsed_input)) */
+        /*     status = exec_pipe(parsed_input, parsed_env); */
+        /* if (is_in_array(parsed_input, ';')) */
+        /*     exec_semicolon(parsed_input, parsed_env); */
         if (check_list_name(parsed_env, "PATH"))
             status = exec_binary(parsed_input, parsed_env);
     }
