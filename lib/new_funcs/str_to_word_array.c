@@ -7,26 +7,61 @@
 
 #include "lib.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-char **str_to_word_array(char *str, int len, char delim)
+static int is_in_str(char c, char *str)
 {
-    int max_y = count_char_in_str(str, delim) + 1;
-    char **map = malloc(sizeof(char *) * (max_y + 1));
-    int limit = 0;
+    for (int i = 0; str[i] != '\0'; i++)
+        if (str[i] == c)
+            return 1;
+    return 0;
+}
 
-    for (int y = 0; y < max_y; y++) {
-        if (y < max_y - 1)
-            limit = my_strlen_delim(str, len, delim);
-        else
-            limit = my_strlen_delim(str, len, '\0');
-        map[y] = malloc(sizeof(char) * (limit + 1));
-        for (int x = 0; x < limit; x++) {
-            map[y][x] = str[len];
-            len++;
-        }
-        map[y][limit] = '\0';
-        len++;
+static int get_array_size(char *str, char *delim)
+{
+    int size = 0;
+
+    for (int i = 0; str[i] != '\0'; i++)
+        if (!is_in_str(str[i], delim) && is_in_str(str[i + 1], delim))
+            size++;
+    return size;
+}
+
+static int get_str_size(char *str, char *delim, int begin)
+{
+    int size = 0;
+
+    for (int i = begin; str[i] != '\0'; i++) {
+        if (is_in_str(str[i], delim))
+            return size;
+        size++;
     }
-    map[max_y] = 0;
-    return map;
+    return size;
+}
+
+static void check_begin(char *str, char *delim, int *begin)
+{
+    int size = my_strlen(str);
+
+    if (is_in_str(str[*begin], delim))
+        while (is_in_str(str[*begin], delim) && *begin < size)
+            *begin += 1;
+    return;
+}
+
+char **str_to_word_array(char *str, char *delim)
+{
+    int size = get_array_size(str, delim);
+    char **array = malloc(sizeof(char *) * (size + 1));
+    int begin = 0;
+    int str_size = 0;
+
+    for (int y = 0; y < size; y++) {
+        check_begin(str, delim, &begin);
+        str_size = get_str_size(str, delim, begin);
+        array[y] = my_strndup(str + begin, str_size);
+        begin += str_size + 1;
+    }
+    array[size] = 0;
+    return array;
 }

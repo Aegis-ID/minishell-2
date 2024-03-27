@@ -28,6 +28,6 @@ int count_char_in_str(char *str, char c);
 int my_arraylen(char **array);
 int my_array_strlen(char **array);
 int my_readfile(char *filepath);
-char **str_to_word_array(char *str, int len, char delim);
+char **str_to_word_array(char *str, char *delim);
 
 #endif /* !__LIB__ */

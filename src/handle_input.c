@@ -58,7 +58,7 @@ int handle_input(char *input, char **parsed_input,
 
     if (!is_str_empty(input)) {
         // command = insert_command(command, input);
-        parsed_input = str_to_word_array(input, 0, ' ');
+        parsed_input = str_to_word_array(input, " ");
         convert_input(parsed_input, input);
         status = exec_input(parsed_input, parsed_env, command);
         free(parsed_input);
