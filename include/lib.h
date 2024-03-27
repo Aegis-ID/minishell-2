@@ -28,6 +28,8 @@ int count_char_in_str(char *str, char c);
 int my_arraylen(char **array);
 int my_array_strlen(char **array);
 int my_readfile(char *filepath);
+int is_in_str(char c, char *str);
+int is_in_array(char **array, char c);
+int are_in_str(char *c, char *str);
 char **str_to_word_array(char *str, char *delim);
-
 #endif /* !__LIB__ */

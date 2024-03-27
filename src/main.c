@@ -38,14 +38,14 @@ int minishell(char **env)
     char *input = 0;
     char **parsed_input = 0;
     list parsed_env = env_to_lists(env);
-    list command = new_list();
+    list history = new_list();
 
     while (1) {
         oh_my_wish(parsed_env, status);
         exit_status = getline(&input, &size, stdin);
         if (exit_status == -1 || my_strcmp(input, "exit\n") == 0)
-            my_exit(input, parsed_env, command, status);
-        status = handle_input(input, parsed_input, parsed_env, command);
+            my_exit(input, parsed_env, history, status);
+        status = handle_input(input, parsed_input, parsed_env, history);
     }
     return status;
 }

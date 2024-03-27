@@ -7,23 +7,17 @@
 
 #include "lib.h"
 #include <stdlib.h>
-#include <stdio.h>
-
-static int is_in_str(char c, char *str)
-{
-    for (int i = 0; str[i] != '\0'; i++)
-        if (str[i] == c)
-            return 1;
-    return 0;
-}
 
 static int get_array_size(char *str, char *delim)
 {
     int size = 0;
 
-    for (int i = 0; str[i] != '\0'; i++)
-        if (!is_in_str(str[i], delim) && is_in_str(str[i + 1], delim))
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!is_in_str(str[i], delim) && (i == 0))
             size++;
+        if (!is_in_str(str[i], delim) && is_in_str(str[i - 1], delim))
+            size++;
+    }
     return size;
 }
 

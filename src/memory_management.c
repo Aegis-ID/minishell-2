@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** minishell
 ** File description:
-** input && commands history
+** input && historys history
 */
 
 #include "my.h"
@@ -38,12 +38,12 @@ void free_parsed_env(list parsed_env)
     return;
 }
 
-void free_command(list command)
+void free_history(list history)
 {
-    while (command != 0) {
-        free(command->raw);
-        command = command->next;
+    while (history != 0) {
+        free(history->raw);
+        history = history->next;
     }
-    free(command);
+    free(history);
     return;
 }

@@ -30,6 +30,8 @@ SRC		=	base_funcs/mini_printf.c		\
 			new_funcs/my_readfile.c 		\
 			new_funcs/is_str_empty.c 		\
 			new_funcs/is_array_empty.c		\
+			new_funcs/is_in_str.c 			\
+			new_funcs/is_in_array.c 		\
 
 CC		?=	gcc
 
