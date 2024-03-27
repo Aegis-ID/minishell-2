@@ -5,11 +5,11 @@
 ** new func
 */
 
-#include "lib.h"
+#include "header.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-static int is_in_str(char *str, char c)
+static int is_in_str(char c, char *str)
 {
     for (int i = 0; str[i] != '\0'; i++)
         if (str[i] == c)
@@ -17,61 +17,51 @@ static int is_in_str(char *str, char c)
     return 0;
 }
 
+static int get_array_size(char *str, char *delim)
+{
+    int size = 0;
+
+    for (int i = 0; str[i] != '\0'; i++)
+        if (!is_in_str(str[i], delim) && is_in_str(str[i + 1], delim))
+            size++;
+    return size;
+}
+
 static int get_str_size(char *str, char *delim, int begin)
 {
     int size = 0;
 
     for (int i = begin; str[i] != '\0'; i++) {
-        if (is_in_str(delim, str[i]))
+        if (is_in_str(str[i], delim))
             return size;
         size++;
     }
     return size;
 }
 
-static int get_delim_size(char *str, char *delim, int begin)
+static void check_begin(char *str, char *delim, int *begin)
 {
-    int size = 0;
+    int size = my_strlen(str);
 
-    for (int i = begin; str[i] != '\0'; i++) {
-        if (!is_in_str(delim, str[i]))
-            return size;
-        size++;
-    }
-    return size;
+    if (is_in_str(str[*begin], delim))
+        while (is_in_str(str[*begin], delim) && *begin < size)
+            *begin += 1;
+    return;
 }
 
 char **str_to_word_array(char *str, char *delim)
 {
-    int size = 0;
+    int size = get_array_size(str, delim);
+    char **array = malloc(sizeof(char *) * (size + 1));
     int begin = 0;
     int str_size = 0;
-    char **array = 0;
 
-    for (int i = 0; str[i] != '\0'; i++)
-        if (is_in_str(delim, str[i]))
-            size++;
-    array = malloc(sizeof(char *) * (size + 1));
     for (int y = 0; y < size; y++) {
+        check_begin(str, delim, &begin);
         str_size = get_str_size(str, delim, begin);
-        if (!is_in_str(delim, str[begin])) {
-            array[y] = my_strndup(str + begin, str_size);
-            begin += str_size + 1;
-        } else
-            begin += get_delim_size(str, delim, begin);
+        array[y] = my_strndup(str + begin, str_size);
+        begin += str_size + 1;
     }
     array[size] = 0;
     return array;
-}
-
-int main(int argc, char **argv)
-{
-    char **tkt = 0;
-
-    if (argc != 3)
-        return 84;
-    tkt = str_to_word_array(argv[1], argv[2]);
-    for (int i = 0; tkt[i] != 0; i++)
-        printf("%s\n", tkt[i]);
-    return 0;
 }
