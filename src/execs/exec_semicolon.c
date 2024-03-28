@@ -10,7 +10,7 @@
 
 int exec_semicolon(char **parsed_input, list parsed_env)
 {
-	int status = 0;
+    int status = 0;
 
     return status;
 }
