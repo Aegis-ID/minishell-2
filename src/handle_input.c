@@ -40,7 +40,7 @@ static int get_begin(int position, char *input, char *delim)
 {
     int begin = position;
 
-    while(is_in_str(input[begin], delim))
+    while (is_in_str(input[begin], delim))
         begin++;
     return begin;
 }
