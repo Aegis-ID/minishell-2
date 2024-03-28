@@ -31,7 +31,7 @@ int exec_pwd_bin(char **parsed_input, list parsed_env)
     free_double_char(env_array);
     if (status == -1)
         mini_dprintf(2, "%s: %s\n", strerror(errno));
-     return status;
+    return status;
 }
 
 int exec_binary(char **parsed_input, list parsed_env)
