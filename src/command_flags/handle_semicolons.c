@@ -18,15 +18,27 @@ static int get_begin(int position, char *input, char *delim)
     return begin;
 }
 
+static int get_array_size(char *input, char delim)
+{
+    int size = 0;
+
+    for (int i = 0; input[i] != '\0'; i++) {
+        if (input[i] != delim && (input[i + 1] == delim ||
+            input[i + 1] == '\0'))
+            size++;
+    }
+    return size;
+}
+
 static char **get_command(char *input)
 {
     int len = 0;
     int begin = 0;
-    int size = count_char_in_str(input, ';') + 1;
+    int size = get_array_size(input, ';');
     char **command = malloc(sizeof(char *) * (size + 1));
 
     for (int i = 0; input[i] != '\0'; i++)
-        if (input[i] == ';') {
+        if (input[i] == ';' && input[i + 1] != ';') {
             command[len] = my_strndup(input + begin, i - begin);
             begin = get_begin(i, input, ";");
             len++;

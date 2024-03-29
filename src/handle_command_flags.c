@@ -14,7 +14,7 @@ int handle_command_flags(char *input, char **parsed_input,
     int status = 0;
 
     for (int i = 0; input[i] != '\0'; i++) {
-        if (input[i] == ';') {
+        if (input[i] == ';' && (input[i + 1] != ';')) {
             status = handle_semicolons(input, parsed_input,
             parsed_env, history);
         }
