@@ -41,6 +41,8 @@ CFLAGS 		=	-Wall -Wextra
 
 OBJ		=	$(SRC:.c=.o)
 
+DEBUG	=	-g
+
 all: $(NAME) clean
 
 $(NAME):	$(OBJ)
@@ -56,4 +58,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug: CPPFLAGS += $(DEBUG)
+debug: CFLAGS += $(DEBUG)
+debug: $(NAME) clean
+
+.PHONY: all clean fclean re debug
