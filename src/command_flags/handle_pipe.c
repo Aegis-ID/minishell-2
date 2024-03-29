@@ -47,6 +47,8 @@ int handle_pipe(char *input, char **parsed_input,
     char **command1 = {0};
     char **command2 = {0};
 
+	if (count_char_in_str(input, '|') >= 2)
+		return status;
     parsed_input = str_to_word_array(input, "|");
     size = my_arraylen(parsed_input);
     for (int y = 0; y < size - 1; y++) {
