@@ -9,10 +9,10 @@
     #define __COMMAND_FLAGS__
 
 enum flags {
-	";",
-	"|",
-	"<",
-	">"
+    ";",
+    "|",
+    "<",
+    ">"
 } flags;
 
 #endif
