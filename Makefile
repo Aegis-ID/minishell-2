@@ -22,6 +22,7 @@ SRC		=	src/main.c	\
 			src/builtins/my_cd.c	\
 			src/builtins/my_exit.c	\
 			src/command_flags/handle_semicolons.c	\
+			src/command_flags/handle_pipe.c	\
 			src/handle_input.c	\
 			src/handle_execs.c	\
 			src/handle_command_flags.c	\

@@ -23,11 +23,10 @@ int exec_builtins(char **parsed_input, list parsed_env, list history);
 /*exec_bin*/
 int exec_pwd_bin(char **parsed_input, list parsed_env);
 int exec_binary(char **parsed_input, list parsed_env);
-/*exec_pipe*/
-int check_pipe(char **parsed_input);
-int exec_pipe(char **parsed_input, list parsed_env);
 /*command_flags*/
 int handle_semicolons(char *input, char **parsed_input,
+    list parsed_env, list history);
+int handle_pipe(char *input, char **parsed_input,
     list parsed_env, list history);
 /*builtins*/
 void my_exit(char *input, list parsed_env, list history, int status);

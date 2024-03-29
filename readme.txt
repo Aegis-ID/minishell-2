@@ -4,7 +4,7 @@ TODO :
 
 Must :
 - good return
-- "|", ";", "<", , "<<", ">", ">>" support;
+- "|", "<", , "<<", ">", ">>" support;
 - parsing with binary tree
 
 Should :
