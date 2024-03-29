@@ -31,11 +31,16 @@ static void check_errors(char **parsed_input, pid_t pid, int *status)
     }
 }
 
-int exec_env_bin(char **parsed_input, list parsed_env)
+int handle_execs(char **parsed_input, list parsed_env, list history)
 {
     int status = 0;
-    pid_t pid = fork();
+    pid_t pid;
 
+    if (parsed_input[0] == 0)
+        return 0;
+    if (is_builtins_funcs(parsed_input[0]))
+        return exec_builtins(parsed_input, parsed_env, history);
+    pid = fork();
     if (pid == 0) {
         if (my_strncmp(parsed_input[0], "./", 2) == 0 &&
             my_strlen(parsed_input[0]) > 2)
