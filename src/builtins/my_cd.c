@@ -85,12 +85,12 @@ static int basic_case(char **parsed_input, list parsed_env)
         mini_dprintf(2, "cd: Too many arguments.\n");
         return 1;
     }
+    pwd = get_pwd();
     status = chdir(parsed_input[1]);
     if (status == -1) {
         mini_dprintf(2, "%s: %s.\n", parsed_input[1], strerror(errno));
         return 1;
     }
-    pwd = get_pwd();
     update_pwd(parsed_env, pwd);
     free(pwd);
     return status;
